@@ -1,7 +1,7 @@
 """
 CS3810: Principles of Database Systems
 Instructor: Thyago Mota
-Student: 
+Student: Noah Fullerton
 Description: A simple FMS for projects
 """
 
@@ -124,15 +124,42 @@ class ProjectCRUD(CRUD):
                 prj_file.close()
         return result
 
-    """
-    TODO #1: 
-        * open db/projects.csv for reading
-        * perform a linear search for the project using the provided key
-        * if the project is found, return it
-        * else, return None
-    """
     def read(self, key) -> Project: 
+        """open db/projects.csv
+        perform liner search for project using key
+        if project is found:
+            open up employee file and create a list with all of the employees
+            return project
+        else, return none"""
+        file = open(os.path.join("db", PRJ_FILE_NAME), "r")
+        lines = file.readlines()
+        file.close()
+        found = False
+        for line in lines:
+            line = line.strip()
+            cols = line.split(",")
+            title = cols[0]
+            if key == title:
+                project = Project(cols[0], cols[1], cols[2], int(cols[3]), [])
+                found = True
+                break
+        if found == True:
+            file = open(os.path.join("db",key,EMP_FILE_NAME), "r")
+            lines = file.readlines()
+            file.close()
+            e_list = []
+            for line in lines:
+                line = line.strip()
+                cols = line.split(",")
+                eid = cols[0]
+                name = cols[1]
+                department = cols[2]
+                employee = Employee(eid, name, employee)
+                e_list.append(employee)
+            project.employees = e_list
+            return project        
         return None
+
 
     def delete(self, key) -> bool: 
         result = False
@@ -158,13 +185,29 @@ class ProjectCRUD(CRUD):
         return result
         
 class DB:
-
-    """
-    TODO #2: 
-        * return the employee associated with the (given) id
-        * if the employee is not found, return None
-    """
     def find_employee(id):
+        """return employee associated with given id
+        if employee is not found, return None"""
+        found = False
+        file = open(os.path.join("db", PRJ_FILE_NAME), "r")  # open project file so we can find the name of each project to search their employee files
+        lines = file.readlines()
+        file.close()
+        project_names = []  # list to store the project names
+        for line in lines:
+            line = line.strip()
+            cols = line.split(",")
+            project_names.append(cols[0])   # store projects name (which is in col[0]) in list
+        for project_name in project_names:
+            file = open(os.path.join("db", project_name, EMP_FILE_NAME), "r") # open each project folder's employee file 1 by 1
+            emp_list = file.readlines()
+            file.close()
+            for emp in emp_list:   # search through each employee line in current employee file
+                cur_emp = emp.strip()
+                emp_cols = cur_emp.split(",")   # split up into individual columns
+                if int(emp_cols[0]) == id:  # if the first column (id column) = id, then employee exists
+                    found = True
+                    employee = Employee(emp_cols[0], emp_cols[1], emp_cols[2])  # create employee entity with that id
+                    return employee     # return employee
         return None
        
 def menu(): 
