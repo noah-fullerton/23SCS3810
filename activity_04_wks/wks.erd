@@ -12,8 +12,8 @@ entity Participants {
 }
 
 weak entity MeetingRooms{
-   floor key
-   roomnumber key
+   floor partial-key
+   roomnumber partial-key
    capacity
 }
 
