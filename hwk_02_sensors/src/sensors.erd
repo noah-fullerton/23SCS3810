@@ -12,4 +12,15 @@ entity Manufacturers { }
 entity Measurements { }
 entity Readings { }
 
-
+relationship have{
+    Sensors[0..N] -> Types[1]
+}
+relationship build{
+    Manufacturers[1] ->Sensors[1..N]
+}
+relationship generate{
+    Manufacturers[1] -> Readings[1..N]
+}
+relationship contain{
+    Readings[1] -> Measurements[1..N]
+}
