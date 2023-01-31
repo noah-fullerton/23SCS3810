@@ -7,12 +7,18 @@ entity Workshops {
 }
 
 entity Participants {
+   name
+   email key
 }
 
-entity MeetingRooms{
+weak entity MeetingRooms{
    floor key
    roomnumber key
    capacity
+}
+
+entity Venues{
+   name key
 }
 
 relationship allocated {
@@ -21,4 +27,8 @@ relationship allocated {
 
 relationship signup{
    Participants[0..N] -> Workshops[0..N]
+}
+
+weak relationship associatedwith{
+   MeetingRooms[1..N] -> Venues[1]
 }
