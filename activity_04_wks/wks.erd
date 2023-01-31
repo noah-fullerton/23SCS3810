@@ -1,0 +1,24 @@
+erdiagram Model
+
+notation=crowsfoot
+entity Workshops {
+   name key
+   dates
+}
+
+entity Participants {
+}
+
+entity MeetingRooms{
+   floor key
+   roomnumber key
+   capacity
+}
+
+relationship allocated {
+   Workshops[0..N] -> MeetingRooms[1]
+}
+
+relationship signup{
+   Participants[0..N] -> Workshops[0..N]
+}
