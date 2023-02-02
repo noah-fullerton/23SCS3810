@@ -154,7 +154,7 @@ class ProjectCRUD(CRUD):
                 eid = cols[0]
                 name = cols[1]
                 department = cols[2]
-                employee = Employee(eid, name, employee)
+                employee = Employee(eid, name, department)
                 e_list.append(employee)
             project.employees = e_list
             return project        
