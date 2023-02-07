@@ -1,0 +1,36 @@
+erdiagram Model
+
+notation=crowsfoot
+
+entity Physicians {
+   UPNI key
+   firstName
+   lastName
+   specialty
+   phoneNumber
+   address
+   email
+}
+
+entity Patients {
+   number key
+   firstName
+   lastName
+   address
+   phoneNumber
+}
+
+entity HealthInsurancePlans {
+   HPID key
+   name
+   number
+}
+
+relationship assist {
+   Physicians[0..N] -> Patients[0..N]
+}
+
+relationship have {
+   Patients[0..N] -> HealthInsurancePlans[0..1]
+   policyNumber
+}

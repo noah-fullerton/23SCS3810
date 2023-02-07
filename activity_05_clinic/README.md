@@ -7,5 +7,5 @@ Draw an Entity Relationship Diagram (ERD) using crow's foot notation for a small
 * a patient has a unique number controlled by the clinic;  
 * the clinic maintains patients basic information, including their first and last name, address, and phone number; 
 * each patient CAN have a health insurance plan, which is uniquely identified by the Health Insurance Plan Identification Number (HPID); 
-* a health insurance plan has a name and tool-free number for authorization; 
+* a health insurance plan has a name and toll-free number for authorization; 
 * if a patient has a health insurance plan, the patient should have a unique health insurance policy number. 
