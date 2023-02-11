@@ -1,0 +1,6 @@
+Employees(ssn: int [und], name: string)
+Projects(number: int [und], title: string)
+CurrentAssignments(employee_ssn: int [und], project_number: int [und], hours_worked: integer)
+
+^^^^^^^^^^^^^^^^^^
+could also call it Employees_Projects instead of CurrentAssignments if you wanted

@@ -1,4 +1,4 @@
-Students(id: integer, name: string)
-courses(number: string, title: string)
-Enrollments(studentId: integer, courseNumber: string)
+Students(id: integer [underlined], name: string)
+Courses(number: integer [underlined], title: string)
+Enrollments(studentId: integer [underlined], courseNumber: integer [underlined])
 

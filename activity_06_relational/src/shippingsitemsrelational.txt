@@ -1,0 +1,3 @@
+Shippings(order_number: int [und], address: string)
+Items(order_number: int [und], seq_number: int [weak], description: string)
+Shippings_Items(order_number: int [und], seq_number: int [und])

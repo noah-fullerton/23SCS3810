@@ -1,19 +1,45 @@
 // CS3810: Principles of Database Systems
 // Instructor: Thyago Mota
-// Student: 
+// Student: Noah Fullerton
 // Description: An ERD for a Paper Reviewing System
 
 erdiagram reviews
 notation=crowsfoot
 
 entity Papers  { 
-    
+    uid key
+    contact_author_email key
+    title
+    abstract
+    file_name
 }
 
 entity Authors { 
-    
+    email key
+    first_name
+    last_name
 }
 
 entity Reviewers { 
-    
+    email key
+    first_name
+    last_name
+    phone_number
+    affiliation
+    topics
+}
+
+relationship Writes {
+    Authors[1..N] -> Papers[0..N]
+}
+
+relationship AssignedTo {
+    Papers[0..N] -> Reviewers[N]
+    technical_merit
+    readability
+    originality
+    relevance
+    recommendation
+    comments_for_committee
+    comments_for_authors
 }

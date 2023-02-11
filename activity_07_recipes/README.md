@@ -7,3 +7,12 @@ Draw an E/R Diagram (ERD) to model the “recipes” database system, identifyin
 ## Part B
 
 Derive a relational schema from your E/R Diagram (ERD), describing the relations, attributes, key attributes, and domains.
+
+relational schema:
+
+Recipes(id: int [und], name: str)
+Tags(meal_type: str [und])
+Ingredients(code: str [und], description: str)
+Steps(recipe_id: str [und], seq_number: int [und, partialkey], description: str)
+Recipes_Ingredients (recipe_id: str [und], ing_code: str [und], quantity: int, unit: str)
+Recipes_Tags (recipe_id: int [und], meal_type: str [und])

@@ -1,0 +1,2 @@
+Buildings(name: string, [underlined], address: string)
+Rooms(buildingName: string [underlined], floor: int [underlined], number: int [underlined]

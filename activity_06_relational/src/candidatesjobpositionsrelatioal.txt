@@ -1,3 +1,3 @@
-Candidates(ssn: integer, name: string)
-JobPositions(number: integer, title: string, department: string)
-JobApplications(ssn: integer, jobNumber: integer)
+Candidates(ssn: integer [und], name: string)
+JobPositions(number: integer [und], title: string, department: string)
+JobApplications(candidate_ssn: integer [und], jobNumber: integer [und])
