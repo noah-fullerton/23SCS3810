@@ -8,7 +8,6 @@ notation=crowsfoot
 
 entity Papers  { 
     uid key
-    contact_author_email key
     title
     abstract
     file_name
@@ -34,7 +33,7 @@ relationship Writes {
 }
 
 relationship AssignedTo {
-    Papers[0..N] -> Reviewers[N]
+    Papers[0..N | "2 to 4"] -> Reviewers[N]
     technical_merit
     readability
     originality
@@ -42,4 +41,8 @@ relationship AssignedTo {
     recommendation
     comments_for_committee
     comments_for_authors
+}
+
+relationship IsContact {
+    Authors[1] -> Papers[1..N]
 }

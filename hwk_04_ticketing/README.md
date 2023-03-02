@@ -13,7 +13,7 @@ After some thinking, you came up with the E/R Data Model [ticketing.erd](src/tic
 
 ![pic1.png](pics/pic1.png)
 
-Create a relational schema in a file named **ticketing.txt** from the given E/R data model. Make sure that your model is able to represent all entity sets, relationships, attributes, attribute domains, and keys. To represent prime attributes suffix the attribute's name with a "*". Note that the **priced** relationship has an attribute named **price**.  For the ternary relationship, just create a new relation to represent it. 
+Create a relational schema in a file named **ticketing.txt** from the given E/R data model. Make sure that your model is able to represent all entity sets, relationships, attributes, attribute domains, and keys. To represent prime attributes suffix the attribute's name with a "*". Note that the **priced** relationship has an attribute named **price**.  For the ternary relationship, just create a new relation to represent it.   
 
 # Submission
 

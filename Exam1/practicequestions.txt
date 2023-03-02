@@ -1,0 +1,29 @@
+Q1) A small financial agency hired you to develop a database system for their business.  After meeting with their manager, you wrote the following requirements for the system:  
+
+the bank has several clients, each identified by a unique id and a name; 
+a client can take one or more loans, each identified by an auto-generated and globally unique number, the amount that is being loaned, for how long (in months), and the interest rate; 
+the bank works with three types of loans (mortgage, car, and student), each with its own specificities: 
+a mortgage loan identifies the address of the house, 
+a car loan identifies the model and the year of the car, and 
+a student loan identifies the educational institution; 
+from the amount loaned, the period of time of the loan, and its interest rate, the system auto-generates several payments, each having a sequential number (unique within the same loan), a due-date, and the payment amount.  
+Draw an E/R diagram to model the system requirements described above. 
+Then, derive a relational model from you E/R diagram. 
+    Weak entity sets (if they exist) should be properly identified.  
+    The schema for the relations you identify should specify which attribute(s) is(are) part of the primary key.  
+    Domains should also be identified for each attribute. 
+
+SOLVED IN NOTEBOOK!!!!!!
+
+Q2) Pirates are identified by unique pirate nicknames regulated by the Central Pirate Registry.
+In addition, each pirate is given a Christian name, a ferocity rating, and a date of first piracy.
+Pirate ships are also identified by unique pirate ship names. These are also regulated by the Central Pirate Registry.
+Important information about a pirate ship includes the number of masts, number of cannon and date comissioned. Merchant vessels are identifed by
+unique merchant shi names regulated by the Potential Victims Association of London, England. Important
+characteristics of merchant vessels include weight and number of masts. The pirate registry keeps track of merchant vessels that have actually been plundered or sunk.
+A given pirate is a rew member for a specific pirate ship at any given time. A pirate may also be unemployed.
+One and only one pirate is a Captaon of one and only one pirate ship at any given time. Assume the history fo past employment is not important.
+The pirate registry keeps track of each incident of plundering. The record identifies the piratre ship, themerchant vessel, and the date of plundering,
+whether or not the merchant vessel was sunk, and how many innocent seamen were forced to walk the plank. It is possible for the same pirate ship to plunder the same merchant ship more than once.
+A. Design a database systme using E/R moedling.
+B. Derive a relational database model from your E/R model.

@@ -24,6 +24,15 @@ Then start your postgres container from the image that you downloaded using:
 
 ```
 docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Users/tmota/devel/teach/__23SCS3810_DB/postgres:/var/lib/postgresql/data postgres
+
+
+
+// THIS IS THE ONE THAT WORKS!!!!!!!!!!!!
+// THIS IS THE ONE THAT WORKS!!!!!!!!!!!!
+
+docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v C:\Users\noahm\PycharmProjects\23SCS3810\postgres:/var/lib/postgresql/data postgres
+
+try making path c:\\database\\
 ```
 
 The command above will start postgres using 135791 as the password for the postgres (default) user.  Note the use of -e parameter (useful to set environment variables) for your container. The environment variables that need to be set is container-dependent. Also note the -v parameter which allows mapping the container's postgres storage to a local folder of your choice. 
@@ -70,6 +79,9 @@ To make sure your database is preserved, use CTRL-C to stop your container image
 ```
 docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v /Users/tmota/devel/teach/__23SCS3810_DB/postgres:/var/lib/postgresql/data postgres
 ```
+
+docker run --rm --name postgres -e POSTGRES_PASSWORD=135791 -v C:\Users\noahm\PycharmProjects\23SCS3810\postgres postgres:/var/lib/postgresql/data postgres
+
 
 On another terminal window, use docker exec to start psql session to connect with the DBMS. 
 
