@@ -1,0 +1,11 @@
+CREATE DATABASE Items;
+
+DROP TABLE Items;
+
+CREATE TABLE Items(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    value INT NOT NULL,
+    weight INT NOT NULL
+)
+
