@@ -1,6 +1,6 @@
 -- CS3810: Principles of Database Systems
 -- Instructor: Thyago Mota
--- Student(s): 
+-- Student(s): Noah Fullerton and Muhammad Qamar
 -- Description: Star Wars Database (SQL Competition)
 
 CREATE DATABASE starwars;
