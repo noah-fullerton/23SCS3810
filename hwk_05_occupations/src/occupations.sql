@@ -1,6 +1,6 @@
 -- CS3810: Principles of Database Systems
 -- Instructor: Thyago Mota
--- Student: 
+-- Student: Noah Fullerton
 -- Description: a database of occupations
 
 CREATE DATABASE occupations;

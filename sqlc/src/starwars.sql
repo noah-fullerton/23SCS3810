@@ -156,18 +156,22 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
 -- a) the number of star wars films
 SELECT COUNT (*) FROM Films;
 -- b) the age group (description) that has the most fans
-SELECT description, COUNT(*) AS Total
-FROM AgeGroups
-GROUP BY Total DESC
-LIMIT 1;
+SELECT description
+FROM AgeGroups A
 INNER JOIN Fans F
-ON A.seq = F.age;
+ON A.seq = F.age
+GROUP BY description
+ORDER BY COUNT(id) DESC
+LIMIT 1;
+
 -- c) the education level (description) with the least number of fans
-SELECT description, COUNT() AS Total FROM EducationLevels E
-INNER JOIN Fans f
+SELECT description
+FROM EducationLevels E
+INNER JOIN Fans F
 ON E.seq = F.education
-SORT BY COUNT
-;
+GROUP BY description
+ORDER BY COUNT(id)
+LIMIT 1;
 
 -- d) the name of the star wars characters in alphabetical order
 SELECT name FROM Characters ORDER BY name;
