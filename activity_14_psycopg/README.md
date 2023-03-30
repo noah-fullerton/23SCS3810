@@ -12,6 +12,8 @@ Once you have **virtualenv** installed, you can setup a virtual environment for 
 virtualenv build
 cd build
 source bin/activate
+
+python -m virtualenv
 ```
 
 Once "in" the virtual environment, you can install all of the packages required for your project (without the risk of conflicts with other projects). 
@@ -51,7 +53,11 @@ conn = psycopg2.connect(**params)
 if conn: 
     print('Connection to Postgres database ' + params['dbname'] + ' was successful!')
 
-    print('Bye!')
+    cur = conn.cursor()
+    sql = 'SELECT id, name FROM employees'
+    cur.execute(sql)
+    for row in cur.fetchall(): 
+        print(row)
     conn.close()
 ```
 

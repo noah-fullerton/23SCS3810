@@ -1,6 +1,6 @@
 -- CS3810: Principles of Database Systems
 -- Instructor: Thyago Mota
--- Student: 
+-- Student: Noah Fullerton
 -- Description: Star Wars Database (SQL Competition)
 
 CREATE DATABASE starwars;
@@ -157,14 +157,162 @@ INSERT INTO FilmRatings VALUES (6716,1,2), (6716,2,5), (29200,2,4), (29200,4,5),
 
 -- h) the top rated star wars film by the fans 
 
+SELECT AVG(B.rating) as average_rating, title FROM Films A
+INNER JOIN FilmRatings B 
+ON A.id = B.film
+GROUP BY A.id
+ORDER BY average_rating DESC
+LIMIT 1
+;
+
+-- how professor did it, you can just use order by dont need to have the avg in the select statement
+SELECT A.title 
+FROM Films A 
+INNER JOIN FilmRatings B 
+ON A.id = B.film
+GROUP BY A.id
+ORDER BY AVG(rating) DESC
+LIMIT 1;
+
 -- j) the top rated film by fans with income '$150,000+'
+
+SELECT title, AVG(B.rating)::numeric(10,2) as average_rating FROM Films A
+INNER JOIN
+(SELECT * FROM Fans A 
+INNER JOIN FilmRatings B ON A.id = B.fan
+INNER JOIN IncomeLevels C ON A.income = C.seq
+WHERE C.seq = 5) B
+ON A.id = B.film
+GROUP BY A.title
+ORDER BY average_rating DESC
+LIMIT 1
+;
+
+SELECT title
+FROM Films A 
+INNER JOIN 
+(SELECT * FROM Fans a
+INNER JOIN FilmRatings B ON A.id = B.fan
+INNER JOIN IncomeLevels C on A.income = C.seq
+WHERE C.seq = 5) B 
+ON A.id = B.film
+GROUP BY A.title
+ORDER BY AVG(B.rating)::numeric(10,2)
+LIMIT 1;
+
+
+-- professors query, notice it doesn't hard code income levels but actually searches for the income level by descr, only use avg in order by
+-- also gives a different answer lol whoops i mightve messed that up
+SELECT A.title
+FROM Films A 
+INNER JOIN FilmRatings B 
+ON A.id = B.film
+INNER JOIN Fans C 
+ON B.fan = C.id 
+INNER JOIN IncomeLevels D 
+ON C.income = D.seq 
+WHERE D.description = '$150,000+'
+GROUP BY A.id 
+ORDER BY AVG(rating) DESC
+LIMIT 1;
+
 
 -- k) the number of ratings AND the average rating received by "Princess Leia", rounded to 2 decimals
 
+SELECT name, COUNT(*) AS number_of_ratings, AVG(B.rating)::numeric(10,2) AS average_rating FROM Characters A
+INNER JOIN CharacterRatings B 
+ON A.id = B.character
+WHERE name = 'Princess Leia'
+GROUP BY name
+;
+
+SELECT name, COUNT(*) AS number_of_ratings, ROUND(AVG(B.rating)::numeric(10,2)) AS average_rating FROM Characters A
+INNER JOIN CharacterRatings B 
+ON A.id = B.character
+WHERE name = 'Princess Leia'
+GROUP BY name
+;
+
 -- l) the average rating of "Star Wars: Episode V The Empire Strikes Back", rounded to 2 decimals
+
+SELECT title, AVG(B.rating)::numeric(10,2) as average_rating FROM Films A
+INNER JOIN FilmRatings B 
+ON A.id = B.film
+WHERE A.id = 5
+GROUP BY A.id
+;
 
 -- m) the name of the character that received the least number of ratings 
 
--- n) the favorite character according the yongest fan audience
+SELECT name, COUNT(*) as total_ratings FROM Characters A
+INNER JOIN CharacterRatings B
+ON A.id = B.character
+GROUP BY A.id
+ORDER BY total_ratings
+LIMIT 1
+;
+
+--would be more correct to use COUNT(rating) ^^^^^^^
+
+-- using order by count instead selecting count:
+SELECT A.name
+FROM Characters A 
+INNER JOIN CharacterRatings B 
+ON A.id = B.character 
+GROUP BY A.id 
+ORDER BY COUNT(b.rating)
+LIMIT 1;
+
+-- n) the favorite character according the youngest fan audience
+
+SELECT name, B.total FROM Characters A
+INNER JOIN
+(SELECT B.character, COUNT(*) as total FROM Fans A
+INNER JOIN CharacterRatings B
+ON A.id = B.fan
+WHERE age = 1
+GROUP BY B.character) B 
+ON A.id = B.character
+GROUP BY B.total, A.name
+ORDER BY B.total DESC
+LIMIT 1
+;
+
+-- professors answer:
+SELECT A.name 
+FROM Characters A 
+INNER JOIN CharacterRatings B 
+ON A.id = B.character 
+INNER JOIN Fans C 
+ON B.fan = C.id 
+INNER JOIN AgeGroups D 
+ON C.age = D.seq 
+WHERE D.description = '18-29'
+GROUP BY A.id 
+ORDER BY AVG(B.rating) DESC
+LIMIT 1;
 
 -- o) the income levels (descriptions) that has at least 100 fans, ordered by income sequential number
+
+SELECT description FROM
+(SELECT COUNT(*) as total, description FROM IncomeLevels A
+INNER JOIN Fans B
+ON A.seq = B.income
+GROUP BY B.income, A.description
+ORDER BY total) Fan_count
+WHERE Fan_count.total > 100
+;
+
+--returns nothing because no income level has at least 100 fans?
+
+--prof answer:
+
+SELECT description 
+FROM IncomeLevels A 
+INNER JOIN Fans B 
+ON A.seq = B.income 
+GROUP BY A.seq 
+HAVING COUNT(*) >= 100
+ORDER BY A.seq;
+
+-- still returns nothing bc no income level has that many fans
