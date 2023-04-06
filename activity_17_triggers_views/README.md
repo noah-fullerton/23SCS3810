@@ -72,7 +72,8 @@ View 1: OrdersTotalByMonth
  2021 |     9 | 2800.00 
  2021 |    10 |  151.00 
 ```
- 
+
+
 View 2: OrdersTotalByYear 
  
 ```

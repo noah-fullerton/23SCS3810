@@ -1,6 +1,6 @@
 -- CS3810: Principles of Database Systems
 -- Instructor: Thyago Mota
--- Student(s): 
+-- Student(s): Noah Fullerton
 -- Description: IPPS database
 
 DROP DATABASE ipps;
@@ -9,9 +9,11 @@ CREATE DATABASE ipps;
 
 \c ipps
 
+
+
 -- create tables
 
--- create user with appropriate access to the tables
+-- create user with appropriate access to the tables, you can put stupid password here
 
 -- queries
 
