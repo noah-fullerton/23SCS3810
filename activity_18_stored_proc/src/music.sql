@@ -47,3 +47,39 @@ CREATE PROCEDURE number_albums(IN art VARCHAR(30))
 
 
 
+CREATE TYPE year_title_tracks AS (
+    year INT,
+    title VARCHAR,
+    tracks INT
+);
+
+CREATE TABLE Test(
+    id year_title_tracks PRIMARY KEY
+);
+
+INSERT INTO TEST VALUES (
+    (4, 'test', 7));
+
+CREATE TABLE Employees (
+    ssn TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    sal FLOAT NOT NULL
+);
+
+ALTER TABLE Employees
+    ADD address TEXT NOT NULL;
+
+CREATE TABLE H1BEmployees(
+    number TEXT NOT NULL,
+    country TEXT NOT NULL
+) INHERITS (Employees);
+
+INSERT INTO Employees VALUES
+    ('1234', 'John', 45000, 'bla');
+
+INSERT INTO H1BEmployees VALUES
+    ('3450', 'Manuel', 7000, 'bla', '1111', 'Portugal');
+
+UPDATE Employees
+SET sal = 80000
+WHERE ssn = '3450';

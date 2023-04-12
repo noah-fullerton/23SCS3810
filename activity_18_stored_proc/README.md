@@ -79,3 +79,23 @@ Make a call to test the procedure using:
 ```
 CALL number_albums('Sepultura'); 
 ```
+
+
+
+CREATE TYPE year_title_tracks AS (
+    year INT,
+    title VARCHAR,
+    tracks INT
+);
+
+CREATE TABLE Test(
+    id year_title_tracks PRIMARY KEY
+);
+
+INSERT INTO TEST VALUES (
+    (4, 'test', 7));
+
+CREATE TABLE Employees (
+    ssn TEXT PRIMARY KEY,
+    
+)
