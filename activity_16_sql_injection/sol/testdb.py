@@ -17,8 +17,7 @@ if conn:
     cur = conn.cursor()
     cur.execute(sql) 
     cur.execute("execute statement (%s)", (id))
-    for row in cur:
-        print(row)  
+        
 
     print('Bye!')
     conn.close()
