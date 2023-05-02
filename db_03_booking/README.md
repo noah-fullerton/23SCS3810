@@ -34,7 +34,7 @@ To make a new reservation, one has to first gather all parameters needed for a r
 * the building abbreviation, and 
 * the room number.
 
-When making a new reservation it is necessary to define a transaction because more than one statement needs to be executed: 
+When making a new reservation it is necessary to define a transaction because more than one statement need to be executed: 
 
 * first, the system needs to check if the room is available for the desired date and period of time; 
 * if the room is indeed available, the new reservation must be entered in the system (to secure the booking);  
@@ -44,7 +44,7 @@ When making a new reservation it is necessary to define a transaction because mo
 Record that the default isolation level for transactions in postgres is **read committed**. Unfortunately, this isolation level does not give an implicit exclusive lock (needed when securing the booking). Therefore, there is a potential risk of more than one user booking the same room on the same day and time. To avoid this problem, your reservation procedure must define the transaction isolation level as **serializable**. In psycopg this is done issuing on the connection object **conn**: 
 
 ```
-conn.isolation_level = extensions.ISOLATION_LEVEL_SERIALIZABLE
+conn.set_isolation_level(extensions.ISOLATION_LEVEL_SERIALIZABLE)
 ```
 
 The flowchart below explains in detail how you should implement make new reservation. 
@@ -73,7 +73,7 @@ To speed-up coding for this assignment, the following prepared statements were s
 
 # Submission 
 
-**PLEASE, if working with a partner, ONLY ONE OF YOU NEEDS TO SUBMIT ON CANVAS**. Also, make sure both names are added in the comment section of SQL and s Python files. 
+**PLEASE, if working with a partner, ONLY ONE OF YOU NEEDS TO SUBMIT ON CANVAS**. Also, make sure both names are added in the comment section of SQL and Python files. 
 
 Submit a zip file names **booking.zip** with the following structure: 
 
@@ -85,4 +85,9 @@ booking.zip
 
 # Rubric
 
-TBD
+```
++15 ReservationsView
++20 List Reservations
++35 New Reservation
++30 Delete Reservation
+```
